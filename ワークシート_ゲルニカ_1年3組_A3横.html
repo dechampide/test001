@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>ゲルニカ鑑賞ワークシート</title>
+<style>
+  :root{
+    --ink:#17161a; --sub:#55535c; --line:#bfbcc4; --hair:#dcd9e0;
+    --tint:#f5f3f0; --tint2:#efece7; --accent:#8c1d18; --accent-soft:#f3e7e5;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{width:2480px; height:1754px;}
+  body{
+    font-family:'Noto Sans JP','IPAGothic',sans-serif;
+    color:var(--ink); background:#fff;
+    -webkit-font-smoothing:antialiased;
+    font-feature-settings:"palt" 1;
+  }
+  .page{
+    width:2480px; height:1754px; padding:40px;
+    display:grid; gap:16px;
+    grid-template-rows:116px 82px 1fr 1fr 0.68fr 78px;
+  }
+
+  /* ---------- header ---------- */
+  .hd{display:flex; align-items:stretch; gap:20px; border-bottom:4px solid var(--ink); padding-bottom:12px;}
+  .hd-tag{
+    writing-mode:horizontal-tb; background:var(--ink); color:#fff;
+    padding:10px 16px; font-size:16px; font-weight:700; letter-spacing:.14em;
+    display:flex; flex-direction:column; justify-content:center; gap:4px; line-height:1.25;
+  }
+  .hd-tag span:last-child{font-weight:500; letter-spacing:.06em; opacity:.82;}
+  .hd-mid{flex:1; display:flex; flex-direction:column; justify-content:center; gap:7px;}
+  .hd-mid h1{font-size:44px; font-weight:900; letter-spacing:-.01em; line-height:1.08;}
+  .hd-mid h1 em{font-style:normal; color:var(--accent);}
+  .hd-mid p{font-size:18px; font-weight:500; color:var(--sub); letter-spacing:.02em;}
+  .hd-name{
+    display:flex; align-items:flex-end; gap:14px; padding-bottom:4px;
+  }
+  .nm{display:flex; align-items:baseline; gap:8px; font-size:16px; font-weight:700;}
+  .nm i{font-style:normal; border-bottom:2px solid var(--ink); display:inline-block; height:34px;}
+  .w70{width:70px;} .w330{width:330px;}
+
+  /* ---------- question band ---------- */
+  .q{
+    background:var(--ink); color:#fff; display:flex; align-items:center; gap:22px; padding:0 24px;
+  }
+  .q b{
+    font-size:17px; font-weight:700; letter-spacing:.16em; white-space:nowrap;
+    border:2px solid rgba(255,255,255,.55); padding:7px 13px;
+  }
+  .q p{font-size:27px; font-weight:700; letter-spacing:.005em;}
+  .q p u{text-decoration:none; border-bottom:3px solid #c9766f; padding-bottom:2px;}
+
+  /* ---------- generic box ---------- */
+  .row{display:grid; gap:16px; min-height:0;}
+  .box{
+    border:2px solid var(--ink); display:flex; flex-direction:column; min-height:0; overflow:hidden;
+  }
+  .box.soft{border:2px solid var(--line);}
+  .bh{
+    display:flex; align-items:center; gap:12px; padding:9px 14px;
+    border-bottom:2px solid var(--ink); background:var(--tint);
+  }
+  .box.soft .bh{border-bottom:2px solid var(--line); background:var(--tint2);}
+  .step{
+    background:var(--accent); color:#fff; font-size:15px; font-weight:900;
+    padding:5px 10px; letter-spacing:.08em; white-space:nowrap;
+  }
+  .min{
+    border:2px solid var(--accent); color:var(--accent); font-size:14px; font-weight:700;
+    padding:3px 8px; white-space:nowrap;
+  }
+  .bh h2{font-size:22px; font-weight:700; letter-spacing:.01em;}
+  .bh .note{margin-left:auto; font-size:14px; font-weight:500; color:var(--sub); white-space:nowrap;}
+  .bd{padding:13px 14px; display:flex; flex-direction:column; gap:10px; flex:1; min-height:0;}
+  .lead{font-size:15.5px; font-weight:500; color:var(--sub); line-height:1.45;}
+  .lead b{color:var(--ink); font-weight:700;}
+
+  /* ruled writing area */
+  .lines{
+    flex:1; min-height:0;
+    background-image:repeating-linear-gradient(to bottom, transparent 0 43px, var(--hair) 43px 45px);
+  }
+  .lines.tall{background-image:repeating-linear-gradient(to bottom, transparent 0 51px, var(--hair) 51px 53px);}
+
+  /* step1 big answer */
+  .oneword{
+    border:3px dashed var(--accent); background:var(--accent-soft);
+    flex:1; display:flex; align-items:center; justify-content:center; min-height:0;
+  }
+  .oneword span{font-size:19px; font-weight:700; color:#a3625c; letter-spacing:.1em;}
+  .because{font-size:16px; font-weight:700; line-height:2.0;}
+  .because i{font-style:normal; display:inline-block; border-bottom:2px solid var(--ink); min-width:210px;}
+
+  /* step2 three mini columns */
+  .tri{display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; flex:1; min-height:0;}
+  .mini{border:2px solid var(--line); display:flex; flex-direction:column; min-height:0;}
+  .mini h3{
+    font-size:16.5px; font-weight:800; padding:6px 10px; background:var(--tint2);
+    border-bottom:2px solid var(--line); display:flex; gap:8px; align-items:center;
+  }
+  .mini h3 u{text-decoration:none; color:var(--accent); font-weight:900;}
+  .mini .seg{padding:7px 10px 9px; display:flex; flex-direction:column; gap:5px; flex:1; min-height:0;}
+  .mini .seg + .seg{border-top:2px dotted var(--line);}
+  .tagfmt{
+    border:2px solid var(--ink); background:#fff; padding:9px 13px; font-size:17px; font-weight:700;
+    display:flex; align-items:center; gap:9px; flex-wrap:wrap;
+  }
+  .tagfmt em{font-style:normal; font-size:14px; font-weight:900; color:#fff; background:var(--ink); padding:3px 8px; letter-spacing:.1em;}
+  .tagfmt i{font-style:normal; display:inline-block; border-bottom:2px solid var(--line); min-width:120px;}
+  .segtitle{font-size:13.5px; font-weight:800; color:var(--sub); letter-spacing:.06em;}
+
+  /* bingo */
+  .bingo{display:grid; grid-template-columns:1fr 1fr; gap:8px 12px;}
+  .cb{
+    display:inline-block; width:21px; height:21px; border:2px solid var(--ink);
+    flex:0 0 auto; background:#fff;
+  }
+  .bingo label{display:flex; align-items:center; gap:9px; font-size:16.5px; font-weight:600;}
+  .count{
+    margin-top:auto; border-top:2px dotted var(--line); padding-top:9px;
+    display:flex; align-items:baseline; gap:8px; font-size:16px; font-weight:700;
+  }
+  .count i{font-style:normal; border-bottom:2px solid var(--ink); display:inline-block; width:86px;}
+  .fav{font-size:15px; font-weight:700; display:flex; align-items:baseline; gap:8px;}
+  .fav i{font-style:normal; border-bottom:2px solid var(--line); display:inline-block; flex:1;}
+
+  /* step4 three classification */
+  .cls{display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; flex:1; min-height:0;}
+  .cl{border:2px solid var(--line); display:flex; flex-direction:column; min-height:0;}
+  .cl h3{
+    font-size:15.5px; font-weight:800; padding:7px 9px; line-height:1.3;
+    border-bottom:2px solid var(--line); display:flex; gap:8px; align-items:flex-start;
+  }
+  .cl h3 u{text-decoration:none; width:26px; height:26px; border-radius:50%; background:var(--ink); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:900; flex:0 0 auto;}
+  .cl .fill{flex:1; min-height:0; background-image:repeating-linear-gradient(to bottom, transparent 0 39px, var(--hair) 39px 41px);}
+  .warn{
+    border:2px solid var(--accent); background:var(--accent-soft); color:#6f1611;
+    font-size:15.5px; font-weight:700; padding:8px 12px; display:flex; gap:10px; align-items:center;
+  }
+  .warn em{font-style:normal; background:var(--accent); color:#fff; font-size:13px; font-weight:900; padding:3px 7px; letter-spacing:.1em; white-space:nowrap;}
+
+  /* checks row */
+  .checks{display:flex; flex-wrap:wrap; gap:7px 16px; font-size:16px; font-weight:600;}
+  .checks label{display:flex; align-items:center; gap:8px;}
+  .fmtbox{
+    border:2px solid var(--ink); padding:11px 13px; font-size:17.5px; font-weight:700; line-height:2.15;
+  }
+  .fmtbox i{font-style:normal; display:inline-block; border-bottom:2px solid var(--line); min-width:150px;}
+  .fmtbox.lg{font-size:19px; line-height:2.3;}
+
+  /* reflect */
+  .stars{display:flex; flex-direction:column; gap:8px;}
+  .stars div{display:flex; align-items:center; gap:12px; font-size:15.5px; font-weight:600;}
+  .stars div span:last-child{margin-left:auto; letter-spacing:.22em; font-size:21px; color:var(--sub);}
+  .teacher{border:2px dotted var(--line); flex:1; min-height:0; padding:7px 10px; font-size:13.5px; font-weight:700; color:var(--sub);}
+
+  /* footer bank */
+  .bank{
+    border:2px solid var(--ink); display:flex; align-items:center; gap:16px; padding:0 18px; overflow:hidden;
+  }
+  .bank b{font-size:15px; font-weight:900; letter-spacing:.1em; background:var(--ink); color:#fff; padding:6px 11px; white-space:nowrap;}
+  .bank p{font-size:16px; font-weight:600; letter-spacing:.01em; line-height:1.4;}
+  .bank .data{margin-left:auto; font-size:12.5px; font-weight:500; color:var(--sub); text-align:right; white-space:nowrap; line-height:1.45;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ============ HEADER ============ -->
+  <header class="hd">
+    <div class="hd-tag"><span>美術科　鑑賞</span><span>WORKSHEET</span></div>
+    <div class="hd-mid">
+      <h1>ピカソ<em>《ゲルニカ》</em>を、自分の目で読みとく50分</h1>
+      <p>見つける → 問いをつくる → AIピカソと対話する → 自分の考えをアップデートする</p>
+    </div>
+    <div class="hd-name">
+      <div class="nm"><i style="width:58px"></i>月<i style="width:58px"></i>日</div>
+      <div class="nm">1年3組</div>
+      <div class="nm"><i class="w70"></i>番</div>
+      <div class="nm">名前<i class="w330"></i></div>
+    </div>
+  </header>
+
+  <!-- ============ CENTRAL QUESTION ============ -->
+  <div class="q">
+    <b>今日の問い</b>
+    <p>《ゲルニカ》の<u>色・形・線・構図</u>から、ピカソは戦争をどのように見せようとしたのだろうか。</p>
+  </div>
+
+  <!-- ============ BAND 1 ============ -->
+  <div class="row" style="grid-template-columns:0.74fr 1.72fr 0.86fr;">
+
+    <section class="box">
+      <div class="bh"><span class="step">STEP 1</span><span class="min">5分</span><h2>ひとこと</h2></div>
+      <div class="bd">
+        <p class="lead">題名を見ないで絵を見ます。心にうかんだ言葉を<b>1つだけ</b>、大きく書こう。</p>
+        <div class="oneword"><span>ここに大きく1語</span></div>
+        <p class="because">その言葉が出たのは、絵の<i></i>を見たから。</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="bh"><span class="step">STEP 2</span><span class="min">8分</span><h2>自分の目で見つける</h2><span class="note">※ここではまだAIを使いません</span></div>
+      <div class="bd">
+        <div class="tri">
+          <div class="mini">
+            <h3><u>①</u>色・明暗</h3>
+            <div class="seg"><span class="segtitle">見えること（事実）</span><div class="lines"></div></div>
+            <div class="seg"><span class="segtitle">感じたこと</span><div class="lines"></div></div>
+          </div>
+          <div class="mini">
+            <h3><u>②</u>形・構図</h3>
+            <div class="seg"><span class="segtitle">見えること（事実）</span><div class="lines"></div></div>
+            <div class="seg"><span class="segtitle">感じたこと</span><div class="lines"></div></div>
+          </div>
+          <div class="mini">
+            <h3><u>③</u>線・動き</h3>
+            <div class="seg"><span class="segtitle">見えること（事実）</span><div class="lines"></div></div>
+            <div class="seg"><span class="segtitle">感じたこと</span><div class="lines"></div></div>
+          </div>
+        </div>
+        <div class="tagfmt"><em>書き方</em>絵の<i></i>が<i></i>だから、<i></i>と感じる。</div>
+      </div>
+    </section>
+
+    <section class="box soft">
+      <div class="bh"><span class="step">おまけ</span><h2>モチーフ探し</h2><span class="note">STEP 2と同時に</span></div>
+      <div class="bd" style="gap:9px;">
+        <p class="lead">見つけたら□にチェック！ <b>大きさ・位置</b>にも注目しよう。</p>
+        <div class="bingo">
+          <label><span class="cb"></span>牛（ウシ）</label>
+          <label><span class="cb"></span>叫ぶ馬</label>
+          <label><span class="cb"></span>電球</label>
+          <label><span class="cb"></span>ランプを持つ手</label>
+          <label><span class="cb"></span>倒れた人</label>
+          <label><span class="cb"></span>折れた剣</label>
+          <label><span class="cb"></span>小さな花</label>
+          <label><span class="cb"></span>子をだく人</label>
+          <label><span class="cb"></span>落ちていく人</label>
+          <label><span class="cb"></span>開いた口</label>
+        </div>
+        <p class="fav" style="margin-top:6px;">いちばん気になった1つ<i></i></p>
+        <span class="segtitle">それはなぜ？</span>
+        <div class="lines" style="flex:1; min-height:84px;"></div>
+        <div class="count">見つけた数<i></i>／10</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ BAND 2 ============ -->
+  <div class="row" style="grid-template-columns:0.95fr 1.62fr 0.95fr;">
+
+    <section class="box">
+      <div class="bh"><span class="step">STEP 3</span><span class="min">7分</span><h2>友達の見方 → 問いをつくる</h2></div>
+      <div class="bd">
+        <span class="segtitle">友達が見つけたこと（2〜3人分）</span>
+        <div class="lines" style="flex:1.1;"></div>
+        <span class="segtitle">AIピカソに聞きたい問い（1つ）</span>
+        <div class="lines" style="flex:0.9;"></div>
+        <p class="lead">コツ／「この表現には<b>どんな効果</b>があるの？」のように、絵の<b>どこ</b>かを入れて聞くと深まる。</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="bh"><span class="step">STEP 4</span><span class="min">12分</span><h2>AIピカソと対話して、3つに分ける</h2></div>
+      <div class="bd">
+        <div class="cls">
+          <div class="cl"><h3><u>A</u>絵から確かめられること</h3><div class="fill"></div></div>
+          <div class="cl"><h3><u>B</u>史実の確認が必要なこと</h3><div class="fill"></div></div>
+          <div class="cl"><h3><u>C</u>想像・解釈（人によって違う）</h3><div class="fill"></div></div>
+        </div>
+        <div class="warn"><em>約束</em>AIの答えは「正解」ではなく「考える材料」。最後に決めるのは、自分の目。</div>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="bh"><span class="step">STEP 5</span><span class="min">10分</span><h2>見方をアップデート</h2></div>
+      <div class="bd">
+        <div class="fmtbox">最初は<i></i>と思ったが、<br>今は<i></i>と考える。<br>なぜなら<i></i>だから。</div>
+        <span class="segtitle">考えが変わるきっかけになったもの</span>
+        <div class="checks">
+          <label><span class="cb"></span>自分の観察</label>
+          <label><span class="cb"></span>友達</label>
+          <label><span class="cb"></span>AIピカソ</label>
+          <label><span class="cb"></span>先生の解説</label>
+        </div>
+        <p class="lead" style="margin-top:auto;">考えが<b>変わらなくてもOK</b>。その時は「やっぱり〜だ」と、理由を書こう。</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ BAND 3 ============ -->
+  <div class="row" style="grid-template-columns:1.9fr 1.1fr;">
+
+    <section class="box">
+      <div class="bh"><span class="step">STEP 6</span><span class="min">8分</span><h2>わたしの最終コメント</h2><span class="note">根拠（絵のどこ）を必ず入れよう</span></div>
+      <div class="bd" style="gap:9px;">
+        <div class="fmtbox lg">私は《ゲルニカ》を<i style="min-width:300px;"></i>な作品だと見た。なぜなら<i style="min-width:420px;"></i>だから。</div>
+        <div class="lines tall" style="flex:1;"></div>
+      </div>
+    </section>
+
+    <section class="box soft">
+      <div class="bh"><span class="step">ふりかえり</span><h2>今日の自分に☆</h2></div>
+      <div class="bd" style="gap:9px;">
+        <div class="stars">
+          <div><span>作品をじっくり見られた</span><span>☆ ☆ ☆ ☆ ☆</span></div>
+          <div><span>根拠をもって書けた</span><span>☆ ☆ ☆ ☆ ☆</span></div>
+          <div><span>AIの答えを吟味できた</span><span>☆ ☆ ☆ ☆ ☆</span></div>
+        </div>
+        <div class="teacher">先生から</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ FOOTER BANK ============ -->
+  <div class="bank">
+    <b>ことばバンク</b>
+    <p>無彩色／明暗／コントラスト／三角形の構図／分解と再構成／デフォルメ／重なり／鋭い線／うねる線／視線の集まり／静けさ／緊張感／叫び／祈り／光と影／対比</p>
+    <div class="data">パブロ・ピカソ《ゲルニカ》1937年／油彩・カンヴァス／約349×777cm<br>マドリード、ソフィア王妃芸術センター　※作品は大型スクリーンで鑑賞します</div>
+  </div>
+
+</div>
+</body>
+</html>
